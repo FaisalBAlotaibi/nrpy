@@ -380,19 +380,19 @@ def single_RK_substep_input_symbolic(
 # k_2      = dt*f(t_n + 1/2*dt, y_n + 1/2*k_1)
 # k_3      = dt*f(t_n + 1/2*dt, y_n + 1/2*k_2)
 # k_4      = dt*f(t_n + dt, y_n + k_3)
-# y_nplus1 = y_n + 1/3k_1 + 1/6k_2 + 1/6k_3 + 1/3k_4
+# y_nplus1 = y_n + 1/6k_1 + 1/3k_2 + 1/3k_3 + 1/6k_4
 
 # Example of scheme RK4 using only k_odd and k_even (Diagonal algroithm) Notice that this only requires storage
 
 
 # k_odd     = dt*f(t_n, y_n)
-# y_nplus1  = 1/3*k_odd
+# y_nplus1  = 1/6*k_odd
 # k_even    = dt*f(t_n + 1/2*dt, y_n + 1/2*k_odd)
-# y_nplus1 += 1/6*k_even
-# k_odd     = dt*f(t_n + 1/2*dt, y_n + 1/2*k_even)
-# y_nplus1 += 1/6*k_odd
-# k_even    = dt*f(t_n + dt, y_n + k_odd)
 # y_nplus1 += 1/3*k_even
+# k_odd     = dt*f(t_n + 1/2*dt, y_n + 1/2*k_even)
+# y_nplus1 += 1/3*k_odd
+# k_even    = dt*f(t_n + dt, y_n + k_odd)
+# y_nplus1 += 1/6*k_even
 ########################################################################################################################
 def register_CFunction_MoL_step_forward_in_time(
     Butcher_dict: Dict[str, Tuple[List[List[Union[sp.Basic, int, str]]], int]],
